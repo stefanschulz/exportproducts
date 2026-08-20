@@ -63,7 +63,6 @@ class AdminExportProductsController extends ModuleAdminController
             'description' => array('label' => 'Description'),
             'tags' => array('label' => 'Tags'),
             'meta_title' => array('label' => 'Meta title'),
-            'meta_keywords' => array('label' => 'Meta keywords'),
             'meta_description' => array('label' => 'Meta description'),
             'link_rewrite' => array('label' => 'URL rewritten'),
             'available_now' => array('label' => 'Text when in stock'),
