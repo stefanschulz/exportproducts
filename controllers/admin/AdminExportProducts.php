@@ -558,6 +558,7 @@ class AdminExportProductsController extends ModuleAdminController
                 }
 
                 $line = preg_replace("/\r|\n/", "", $line);
+                $line = array_map(array($this, 'escapeCsvFormula'), $line);
 
                 fputcsv(
                     $f,
@@ -580,6 +581,21 @@ class AdminExportProductsController extends ModuleAdminController
     public function getWarehouses($id_warehouses)
     {
         return $id_warehouses['id_warehouse'];
+    }
+
+    /**
+     * Prefixes cell values that start with a formula-triggering character
+     * (=, +, -, @, tab, CR) with a single quote, so spreadsheet applications
+     * such as Excel or Google Sheets don't interpret them as formulas when
+     * a merchant opens the exported CSV directly (CSV/formula injection).
+     */
+    public function escapeCsvFormula($value)
+    {
+        if (is_string($value) && isset($value[0]) && in_array($value[0], array('=', '+', '-', '@', "\t", "\r"), true)) {
+            return "'" . $value;
+        }
+
+        return $value;
     }
 
     public function getCategories(
