@@ -2,7 +2,7 @@
 <project name="ExportProducts" default="package">
 
     <property name="folder" value="exportproducts"/>
-    <property name="version" value="2.8.0"/>
+    <property name="version" value="2.8.1"/>
 
     <target name="package">
         <delete quiet="true">
