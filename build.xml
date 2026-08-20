@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ExportProducts" default="package">
+
+    <property name="folder" value="exportproducts"/>
+    <property name="version" value="2.8.0"/>
+
+    <target name="package">
+        <delete quiet="true">
+            <fileset>
+                <include name="${folder}-*.zip"/>
+            </fileset>
+        </delete>
+        <zip destfile="${folder}-${version}.zip">
+            <fileset dir=".">
+                <include name="${folder}/**"/>
+            </fileset>
+        </zip>
+    </target>
+
+</project>
