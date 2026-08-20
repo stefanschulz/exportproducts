@@ -7,7 +7,7 @@
  * @author Oavea - Oavea.com
  * @copyright Oavea / PrestaShop
  * @license http://www.opensource.org/licenses/osl-3.0.php Open-source licence 3.0
- * @version 2.7.2
+ * @version 2.8.0
  */
 class AdminExportProductsController extends ModuleAdminController
 {
