@@ -482,7 +482,7 @@ class AdminExportProductsController extends ModuleAdminController
                                 break;
                             case 'date_added':
                                 $date = new DateTime($p->date_add);
-                                $line['date_add'] = $date->format("Y-m-d");
+                                $line['date_added'] = $date->format("Y-m-d");
                                 break;
                             case 'depends_on_stock':
                                 $line['depends_on_stock'] = (int) Db::getInstance()->getValue(
