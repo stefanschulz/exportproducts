@@ -110,6 +110,7 @@ class AdminExportProductsController extends ModuleAdminController
                 'label' => 'Warehouse',
                 'help' => 'ID of the warehouse to set as storage.'
             ),
+            'accessories' => array('label' => 'Accessories (x,y,z...)'),
         );
 
     }
@@ -497,6 +498,14 @@ class AdminExportProductsController extends ModuleAdminController
                                         )
                                     );
                                 }
+
+                                break;
+                            case 'accessories':
+                                $accessories = $p->getAccessories($id_lang);
+                                $line['accessories'] = implode(
+                                    ',',
+                                    array_column($accessories, 'reference')
+                                );
 
                                 break;
                             case 'date_added':
