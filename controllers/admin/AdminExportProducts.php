@@ -324,7 +324,7 @@ class AdminExportProductsController extends ModuleAdminController
                         Context::getContext()
                     );
 
-                $force_switch_fields = array('upc', 'supplier_reference');
+                $force_switch_fields = array('upc', 'supplier_reference', 'depends_on_stock');
                 foreach ($this->available_fields as $field => $array) {
                     if (!in_array($field, $force_switch_fields) && isset($p->$field) && !is_array($p->$field)) {
                         $line[$field] = $p->$field;
@@ -483,6 +483,14 @@ class AdminExportProductsController extends ModuleAdminController
                             case 'date_added':
                                 $date = new DateTime($p->date_add);
                                 $line['date_add'] = $date->format("Y-m-d");
+                                break;
+                            case 'depends_on_stock':
+                                $line['depends_on_stock'] = (int) Db::getInstance()->getValue(
+                                    'SELECT `depends_on_stock` FROM `' . _DB_PREFIX_ . 'stock_available`
+                                    WHERE `id_product` = ' . (int) $p->id . '
+                                    AND `id_product_attribute` = 0
+                                    AND `id_shop` = ' . (int) $id_shop
+                                );
                                 break;
 
                             default:
