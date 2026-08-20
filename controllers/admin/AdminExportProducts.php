@@ -433,6 +433,11 @@ class AdminExportProductsController extends ModuleAdminController
                                 }
 
                                 break;
+                            case 'reduction_percent':
+                            case 'reduction_from':
+                            case 'reduction_to':
+                                // already populated above while handling 'reduction_price'
+                                break;
                             case 'tags':
                                 $tags = $p->getTags($id_lang);
 
