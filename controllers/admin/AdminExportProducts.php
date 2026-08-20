@@ -324,8 +324,9 @@ class AdminExportProductsController extends ModuleAdminController
                         Context::getContext()
                     );
 
+                $force_switch_fields = array('upc', 'supplier_reference');
                 foreach ($this->available_fields as $field => $array) {
-                    if (isset($p->$field) && !is_array($p->$field)) {
+                    if (!in_array($field, $force_switch_fields) && isset($p->$field) && !is_array($p->$field)) {
                         $line[$field] = $p->$field;
                     } else {
                         switch ($field) {
@@ -378,11 +379,7 @@ class AdminExportProductsController extends ModuleAdminController
 
                                 break;
                             case 'supplier_reference':
-                                if(version_compare(_PS_VERSION_, '1.7.0.0', '>=')) {
-                                    $line['supplier_reference'] = ProductSupplier::getProductSupplierReference($p->id, 0, $p->id_supplier);
-                                } else {
-                                    $line['supplier_reference'] = $p->supplier_reference;
-                                }
+                                $line['supplier_reference'] = ProductSupplier::getProductSupplierReference($p->id, 0, $p->id_supplier);
 
                                 break;
                             case 'features':
