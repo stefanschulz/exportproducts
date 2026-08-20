@@ -57,6 +57,7 @@ class AdminExportProductsController extends ModuleAdminController
             'minimal_quantity' => array('label' => 'Minimal quantity'),
             'low_stock_threshold' => array('label' => 'Low stock level'),
             'low_stock_alert' => array('label' => 'Send me an email when the quantity is under this level'),
+            'stock_location' => array('label' => 'Stock location'),
             'visibility' => array('label' => 'Visibility'),
             'additional_shipping_cost' => array('label' => 'Additional shipping cost'),
             'unity' => array('label' => 'Unit for the unit price'),
@@ -497,6 +498,14 @@ class AdminExportProductsController extends ModuleAdminController
                             case 'depends_on_stock':
                                 $line['depends_on_stock'] = (int) Db::getInstance()->getValue(
                                     'SELECT `depends_on_stock` FROM `' . _DB_PREFIX_ . 'stock_available`
+                                    WHERE `id_product` = ' . (int) $p->id . '
+                                    AND `id_product_attribute` = 0
+                                    AND `id_shop` = ' . (int) $id_shop
+                                );
+                                break;
+                            case 'stock_location':
+                                $line['stock_location'] = (string) Db::getInstance()->getValue(
+                                    'SELECT `location` FROM `' . _DB_PREFIX_ . 'stock_available`
                                     WHERE `id_product` = ' . (int) $p->id . '
                                     AND `id_product_attribute` = 0
                                     AND `id_shop` = ' . (int) $id_shop
