@@ -539,7 +539,7 @@ class AdminExportProductsController extends ModuleAdminController
                                         $product_download = new ProductDownload($id_product_download);
                                         $line['nb_downloadable'] = $product_download->nb_downloadable;
                                         $line['nb_days_accessible'] = $product_download->nb_days_accessible;
-                                        if ($product_download->date_expiration && $product_download->date_expiration != '0000-00-00') {
+                                        if ($product_download->date_expiration && $product_download->date_expiration != '0000-00-00 00:00:00') {
                                             $line['date_expiration'] = date_create($product_download->date_expiration)->format('Y-m-d');
                                         }
                                     }
