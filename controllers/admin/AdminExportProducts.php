@@ -7,7 +7,7 @@
  * @author Oavea - Oavea.com
  * @copyright Oavea / PrestaShop
  * @license http://www.opensource.org/licenses/osl-3.0.php Open-source licence 3.0
- * @version 2.7.1
+ * @version 2.7.2
  */
 class AdminExportProductsController extends ModuleAdminController
 {
@@ -141,8 +141,8 @@ class AdminExportProductsController extends ModuleAdminController
         $inputs = array(
             array(
                 'type' => 'select',
-                'label' => $this->l('Language'),
-                'desc' => $this->l('Choose a language you wish to export'),
+                'label' => $this->trans('Language'),
+                'desc' => $this->trans('Choose a language you wish to export'),
                 'name' => 'export_language',
                 'class' => 't',
                 'options' => array(
@@ -153,21 +153,21 @@ class AdminExportProductsController extends ModuleAdminController
             ),
             array(
                 'type' => 'text',
-                'label' => $this->l('Delimiter'),
+                'label' => $this->trans('Delimiter'),
                 'name' => 'export_delimiter',
                 'value' => ',',
-                'desc' => $this->l('The character to separate the fields')
+                'desc' => $this->trans('The character to separate the fields')
             ),
             array(
                 'type' => 'text',
-                'label' => $this->l('Feature delimiter'),
+                'label' => $this->trans('Feature delimiter'),
                 'name' => 'export_feature_delimiter',
                 'value' => '|',
-                'desc' => $this->l('Character to seperate single feature entries')
+                'desc' => $this->trans('Character to seperate single feature entries')
             ),
             array(
                 'type' => 'radio',
-                'label' => $this->l('Export active products?'),
+                'label' => $this->trans('Export active products?'),
                 'name' => 'export_active',
                 'values' => array(
                     array('id' => 'active_off', 'value' => 0, 'label' => 'no, export all products.'),
@@ -177,8 +177,8 @@ class AdminExportProductsController extends ModuleAdminController
             ),
             array(
                 'type' => 'select',
-                'label' => $this->l('Product Category'),
-                'desc' => $this->l('Choose a product category you wish to export'),
+                'label' => $this->trans('Product Category'),
+                'desc' => $this->trans('Choose a product category you wish to export'),
                 'name' => 'export_category',
                 'class' => 't',
                 'options' => array(
@@ -193,8 +193,8 @@ class AdminExportProductsController extends ModuleAdminController
         $pricetintex = array(
             array(
                 'type' => 'select',
-                'label' => $this->l('Price tax included or excluded'),
-                'desc' => $this->l('Choose if you want to export the price with or without tax.'),
+                'label' => $this->trans('Price tax included or excluded'),
+                'desc' => $this->trans('Choose if you want to export the price with or without tax.'),
                 'name' => 'export_tax',
                 'class' => 't export_tax',
                 'options' => array(
@@ -213,12 +213,12 @@ class AdminExportProductsController extends ModuleAdminController
         $fields_form = array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->l('Export Options'),
+                    'title' => $this->trans('Export Options'),
                     'icon' => 'icon-cogs'
                 ),
                 'input' => $inputs,
                 'submit' => array(
-                    'title' => $this->l('Export'),
+                    'title' => $this->trans('Export'),
                 )
             ),
         );
