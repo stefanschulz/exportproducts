@@ -86,6 +86,14 @@ class AdminExportProductsController extends ModuleAdminController
             'uploadable_files' => array('label' => 'Uploadable files (0 = No, 1 = Yes)'),
             'text_fields' => array('label' => 'Text fields (0 = No, 1 = Yes)'),
             'out_of_stock' => array('label' => 'Action when out of stock'),
+            'is_virtual' => array('label' => 'Virtual product (0 = No, 1 = Yes)'),
+            'file_url' => array(
+                'label' => 'File URL',
+                'help' => 'Left empty: PrestaShop does not expose a stable public URL for downloadable product files.',
+            ),
+            'nb_downloadable' => array('label' => 'Number of allowed downloads'),
+            'date_expiration' => array('label' => 'Expiration date'),
+            'nb_days_accessible' => array('label' => 'Number of days'),
             'shop' => array(
                 'label' => 'ID / Name of shop',
                 'help' => 'Ignore this field if you don\'t use the Multistore tool. If you leave this field empty, the default shop will be used.',
@@ -510,6 +518,28 @@ class AdminExportProductsController extends ModuleAdminController
                                     AND `id_product_attribute` = 0
                                     AND `id_shop` = ' . (int) $id_shop
                                 );
+                                break;
+                            case 'nb_downloadable':
+                                $line['nb_downloadable'] = '';
+                                $line['date_expiration'] = '';
+                                $line['nb_days_accessible'] = '';
+
+                                if ($p->is_virtual) {
+                                    $id_product_download = ProductDownload::getIdFromIdProduct($p->id, false);
+                                    if ($id_product_download) {
+                                        $product_download = new ProductDownload($id_product_download);
+                                        $line['nb_downloadable'] = $product_download->nb_downloadable;
+                                        $line['nb_days_accessible'] = $product_download->nb_days_accessible;
+                                        if ($product_download->date_expiration && $product_download->date_expiration != '0000-00-00') {
+                                            $line['date_expiration'] = date_create($product_download->date_expiration)->format('Y-m-d');
+                                        }
+                                    }
+                                }
+
+                                break;
+                            case 'date_expiration':
+                            case 'nb_days_accessible':
+                                // already populated above while handling 'nb_downloadable'
                                 break;
 
                             default:
