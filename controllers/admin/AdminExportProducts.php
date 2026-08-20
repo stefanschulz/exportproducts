@@ -423,17 +423,11 @@ class AdminExportProductsController extends ModuleAdminController
 
                                     if ($line['reduction_price'] != '' || $line['reduction_percent'] != '') {
                                         if ($specificPrice['from'] != '0000-00-00 00:00:00') {
-                                            $line['reduction_from'] = Tools::date_format(
-                                                date_create($specificPrice['from']),
-                                                'Y-m-d'
-                                            );
+                                            $line['reduction_from'] = date_create($specificPrice['from'])->format('Y-m-d');
                                         }
 
                                         if ($specificPrice['to'] != '0000-00-00 00:00:00') {
-                                            $line['reduction_to'] = Tools::date_format(
-                                                date_create($specificPrice['to']),
-                                                'Y-m-d'
-                                            );
+                                            $line['reduction_to'] = date_create($specificPrice['to'])->format('Y-m-d');
                                         }
                                     }
                                 }
