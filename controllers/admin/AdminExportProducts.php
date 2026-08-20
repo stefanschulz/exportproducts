@@ -414,25 +414,27 @@ class AdminExportProductsController extends ModuleAdminController
                                 $line['reduction_from'] = '';
                                 $line['reduction_to'] = '';
 
-                                if ($specificPrice['reduction_type'] == 'amount') {
-                                    $line['reduction_price'] = $specificPrice['reduction'];
-                                } elseif ($specificPrice['reduction_type'] == 'percentage') {
-                                    $line['reduction_percent'] = $specificPrice['reduction'] * 100;
-                                }
-
-                                if ($line['reduction_price'] != '' || $line['reduction_percent'] != '') {
-                                    if ($specificPrice['from'] != '0000-00-00 00:00:00') {
-                                        $line['reduction_from'] = Tools::date_format(
-                                            date_create($specificPrice['from']),
-                                            'Y-m-d'
-                                        );
+                                if (!empty($specificPrice)) {
+                                    if ($specificPrice['reduction_type'] == 'amount') {
+                                        $line['reduction_price'] = $specificPrice['reduction'];
+                                    } elseif ($specificPrice['reduction_type'] == 'percentage') {
+                                        $line['reduction_percent'] = $specificPrice['reduction'] * 100;
                                     }
 
-                                    if ($specificPrice['to'] != '0000-00-00 00:00:00') {
-                                        $line['reduction_to'] = Tools::date_format(
-                                            date_create($specificPrice['to']),
-                                            'Y-m-d'
-                                        );
+                                    if ($line['reduction_price'] != '' || $line['reduction_percent'] != '') {
+                                        if ($specificPrice['from'] != '0000-00-00 00:00:00') {
+                                            $line['reduction_from'] = Tools::date_format(
+                                                date_create($specificPrice['from']),
+                                                'Y-m-d'
+                                            );
+                                        }
+
+                                        if ($specificPrice['to'] != '0000-00-00 00:00:00') {
+                                            $line['reduction_to'] = Tools::date_format(
+                                                date_create($specificPrice['to']),
+                                                'Y-m-d'
+                                            );
+                                        }
                                     }
                                 }
 
