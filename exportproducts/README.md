@@ -29,3 +29,7 @@ Requires PrestaShop 8.0 or later.
 - The exported columns are kept aligned with PrestaShop's own current product import template, including ISBN, MPN, stock location, virtual/downloadable product fields and accessories.
 - The "File URL" column for virtual products is always left empty: PrestaShop does not expose a stable public URL for downloadable product files, so there is nothing meaningful to export there.
 
+## License
+
+Released under the [Open Software License 3.0](./LICENSE.md).
+

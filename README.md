@@ -22,6 +22,10 @@ phing package
 
 This zips the `exportproducts` folder into `exportproducts-<version>.zip` at the repository root, ready to upload via the PrestaShop module page. Keep the `version` property in `build.xml` in sync with `exportproducts/config.xml` and `exportproducts/exportproducts.php`.
 
+## Origin
+
+This is a maintained fork of [oavea/exportproducts](https://github.com/oavea/exportproducts), unmaintained upstream since 2015.
+
 ## License
 
-Released under the [Open Software License 3.0](http://www.opensource.org/licenses/osl-3.0.php), as declared in the module's source headers.
+Released under the [Open Software License 3.0](./LICENSE), as declared in the module's source headers since the original 2010 release. Copyright (c) 2010-2015 Oavea (oavea.com), copyright (c) 2023-2026 Stefan Schulz.
