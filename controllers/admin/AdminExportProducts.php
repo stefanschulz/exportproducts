@@ -445,18 +445,27 @@ class AdminExportProductsController extends ModuleAdminController
 
                                 $link = new Link();
                                 $imagelinks = array();
+                                $legends = array();
                                 $images = $p->getImages($id_lang);
                                 foreach ($images as $image) {
                                     $imagelinks[] = Tools::getShopProtocol() . $link->getImageLink(
                                             $p->link_rewrite,
                                             $p->id_product . '-' . $image['id_image']
                                         );
+                                    $legends[] = $image['legend'];
                                 }
                                 $line['image'] = implode(
                                     ",",
                                     $imagelinks
                                 );
+                                $line['legend'] = implode(
+                                    ",",
+                                    $legends
+                                );
 
+                                break;
+                            case 'legend':
+                                // already populated above while handling 'image'
                                 break;
                             case 'delete_existing_images':
                                 $line['delete_existing_images'] = 0;
